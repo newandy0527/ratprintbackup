@@ -1,11 +1,11 @@
 {
-    "Turtle_1": {
+    "Turtle_2": {
         "lane1": {
             "name": "lane1",
-            "unit": "Turtle_1",
-            "hub": "Turtle_1",
+            "unit": "Turtle_2",
+            "hub": "Turtle_2",
             "extruder": "extruder",
-            "buffer": "Turtle_1",
+            "buffer": "Turtle_2",
             "buffer_status": "Advancing",
             "lane": 1,
             "map": "T1",
@@ -28,10 +28,10 @@
         },
         "lane2": {
             "name": "lane2",
-            "unit": "Turtle_1",
-            "hub": "Turtle_1",
+            "unit": "Turtle_2",
+            "hub": "Turtle_2",
             "extruder": "extruder",
-            "buffer": "Turtle_1",
+            "buffer": "Turtle_2",
             "buffer_status": "Advancing",
             "lane": 2,
             "map": "T2",
@@ -54,10 +54,10 @@
         },
         "lane3": {
             "name": "lane3",
-            "unit": "Turtle_1",
-            "hub": "Turtle_1",
+            "unit": "Turtle_2",
+            "hub": "Turtle_2",
             "extruder": "extruder",
-            "buffer": "Turtle_1",
+            "buffer": "Turtle_2",
             "buffer_status": "Advancing",
             "lane": 3,
             "map": "T3",
@@ -80,10 +80,10 @@
         },
         "lane4": {
             "name": "lane4",
-            "unit": "Turtle_1",
-            "hub": "Turtle_1",
+            "unit": "Turtle_2",
+            "hub": "Turtle_2",
             "extruder": "extruder",
-            "buffer": "Turtle_1",
+            "buffer": "Turtle_2",
             "buffer_status": "Advancing",
             "lane": 4,
             "map": "T4",
