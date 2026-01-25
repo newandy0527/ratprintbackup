@@ -73,9 +73,6 @@ variable_purge_z: 0
 variable_first_layer_z: -1
 variable_use_fixed_poop_z: 0
 variable_fixed_poop_z: 0.2
-variable_raise_z_per_blob: 0.5
-variable_fixed_z_feed: 600
-
 gcode:
   {% set gVars = printer['gcode_macro _AFC_GLOBAL_VARS'] %}
   {% set travel_speed = (gVars.travel_speed|default(120)) * 60 %}
@@ -189,22 +186,24 @@ gcode:
     G91
     M83
 
-    # Deterministic constant raise per blob
-    {% set raise_z = variable_raise_z_per_blob|float %}
+    {% set step_triangular = (step * (step + 1)) / 2 %}
+
+    {% if step == 0 %}
+        {% set z_raise_sub = purge_start %}
+    {% else %}
+        {% set z_raise_sub = step_triangular * iteration_z_change %}
+    {% endif %}
+
+    {% set raise_z = (iteration_z_raise - z_raise_sub) * extrude_ratio %}
     {% if raise_z < 0 %}
-      {% set raise_z = 0 %}
+        {% set raise_z = 0 %}
     {% endif %}
 
-    # Compute duration safely (not used to vary feedrate here)
-    {% set duration = 0.0 %}
-    {% if purge_spd > 0 %}
-      {% set duration = extrude_amount / purge_spd %}
-    {% endif %}
+    {% set duration = extrude_amount / purge_spd %}
 
-    # Use fixed Z feedrate (mm/min) for identical motion each blob
-    {% if raise_z > 0 %}
-      {% set z_feed = variable_fixed_z_feed|float %}
-      G1 Z{raise_z} E{extrude_amount} F{z_feed}
+    {% if z_poop %}
+      {% set speed = raise_z / duration %}
+      G1 Z{raise_z} E{extrude_amount} F{speed}
     {% else %}
       G1 E{extrude_amount} F{purge_spd}
     {% endif %}
@@ -219,7 +218,7 @@ gcode:
 
   G90
 
-  {% set final_poop_height = flz + purge_start + (iterations * variable_raise_z_per_blob|float) %}
+  {% set final_poop_height = flz + purge_start + (iterations * iteration_z_raise) %}
   {% set new_z = final_poop_height + z_lift %}
 
   {% if z_poop %}
