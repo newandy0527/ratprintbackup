@@ -19,7 +19,7 @@
             "empty_spool_weight": 190,
             "spool_id": null,
             "color": "",
-            "weight": 1000,
+            "weight": 996.8021842191877,
             "extruder_temp": null,
             "runout_lane": null,
             "filament_status": "Ready",
@@ -120,7 +120,7 @@
         "num_extruders": 1,
         "extruders": {
             "extruder": {
-                "lane_loaded": null
+                "lane_loaded": ""
             }
         },
         "bypass": {
