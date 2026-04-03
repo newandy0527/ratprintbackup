@@ -17,7 +17,6 @@
             "density": 1.24,
             "diameter": 1.75,
             "empty_spool_weight": 190,
-            "remember_spool": false,
             "spool_id": null,
             "color": "",
             "weight": 0,
@@ -27,8 +26,7 @@
             "filament_status_led": "#ff0000",
             "status": "None",
             "dist_hub": 170.0,
-            "td1_data": {},
-            "endstops": "load,hub,tool_start,buffer_advance,buffer_trailing"
+            "td1_data": {}
         },
         "lane2": {
             "name": "lane2",
@@ -47,7 +45,6 @@
             "density": 1.24,
             "diameter": 1.75,
             "empty_spool_weight": 190,
-            "remember_spool": false,
             "spool_id": null,
             "color": "",
             "weight": 0,
@@ -57,8 +54,7 @@
             "filament_status_led": "#ff0000",
             "status": "None",
             "dist_hub": 110.0,
-            "td1_data": {},
-            "endstops": "load,hub,tool_start,buffer_advance,buffer_trailing"
+            "td1_data": {}
         },
         "lane3": {
             "name": "lane3",
@@ -77,7 +73,6 @@
             "density": 1.24,
             "diameter": 1.75,
             "empty_spool_weight": 190,
-            "remember_spool": false,
             "spool_id": null,
             "color": "",
             "weight": 0,
@@ -87,8 +82,7 @@
             "filament_status_led": "#ff0000",
             "status": "None",
             "dist_hub": 110.0,
-            "td1_data": {},
-            "endstops": "load,hub,tool_start,buffer_advance,buffer_trailing"
+            "td1_data": {}
         },
         "lane4": {
             "name": "lane4",
@@ -107,7 +101,6 @@
             "density": 1.24,
             "diameter": 1.75,
             "empty_spool_weight": 190,
-            "remember_spool": false,
             "spool_id": null,
             "color": "",
             "weight": 0,
@@ -117,8 +110,7 @@
             "filament_status_led": "#ff0000",
             "status": "None",
             "dist_hub": 165.0,
-            "td1_data": {},
-            "endstops": "load,hub,tool_start,buffer_advance,buffer_trailing"
+            "td1_data": {}
         }
     },
     "system": {
