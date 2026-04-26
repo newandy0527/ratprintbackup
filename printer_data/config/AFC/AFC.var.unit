@@ -12,7 +12,7 @@
             "load": true,
             "prep": true,
             "tool_loaded": false,
-            "loaded_to_hub": true,
+            "loaded_to_hub": false,
             "material": "",
             "density": 1.24,
             "diameter": 1.75,
@@ -25,7 +25,7 @@
             "runout_lane": null,
             "filament_status": "Ready",
             "filament_status_led": "#00cc00",
-            "status": "Ejecting",
+            "status": "None",
             "dist_hub": 127.69,
             "td1_data": {},
             "endstops": "load,hub,tool_start,buffer_advance,buffer_trailing"
