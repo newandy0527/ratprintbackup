@@ -21,7 +21,7 @@ gcode:
   LANE_UNLOAD LANE={stepper ~ lane_num}
 
 [gcode_macro BT_LANE_MOVE]
-description: Move the specified lane the specified amount. Lane parameter is an integer and defaults to 1. Distance parameter is and integer and defaults to 20. Distance over 200 uses long load speeds. ex `BT_LANE_MOVE LANE=2 DISTANCE=100`
+description: Move the specified lane the specified amount. Lane parameter is an integer and defaults to 1. Distance parameter is an integer and defaults to 20. Distance over 200 uses long load speeds. ex `BT_LANE_MOVE LANE=2 DISTANCE=100`
 gcode:
   {% set lane_num = params.LANE|default(1)|int %}
   {% set dist_str = params.DISTANCE|default('20')|string %}
@@ -42,9 +42,8 @@ gcode:
     {% set dist = dist_str|float %}
     LANE_MOVE LANE={stepper ~ lane_num} DISTANCE={dist}
   {% else %}
-    { action_respond_info("Error: Invalid DISTANCE parameter: " ~ dist_str) }
+    RESPOND TYPE=command MSG="Error: Invalid DISTANCE parameter: {{ dist_str }}"
   {% endif %}
-
 
 [gcode_macro BT_RESUME]
 description: Resume the print after an error, using normal resume will also call AFC_RESUME
@@ -66,15 +65,27 @@ gcode:
   {% set verbose = gVars['verbose']|int %}
   {% set disable_skew = gVars['disable_skew_correction']|default(false)|lower == 'true' %}
 
-  # Disable skew correction if defined
   {% if disable_skew %}
-    SET_GCODE_VARIABLE MACRO=AFC_ENABLE_SKEW VARIABLE=skew_profile VALUE='"{printer.skew_correction.current_profile_name}"'
-    {% if verbose > 1 %}
-      RESPOND TYPE=command MSG='AFC: Disabling skew correction'
-    {% endif %}
+    {% if printer.configfile.settings.skew_correction is defined %}
+
+      {% if printer.skew_correction.current_profile_name is defined %}
+        SET_GCODE_VARIABLE MACRO=AFC_ENABLE_SKEW VARIABLE=skew_profile VALUE="{{ printer.skew_correction.current_profile_name }}"
+      {% endif %}
+
+      {% if verbose > 1 %}
+        RESPOND TYPE=command MSG="AFC: Disabling skew correction"
+      {% endif %}
+
       SET_SKEW CLEAR=1
-    {% if verbose > 1 %}
-      GET_CURRENT_SKEW
+
+      {% if verbose > 1 %}
+        GET_CURRENT_SKEW
+      {% endif %}
+
+    {% else %}
+      {% if verbose > 1 %}
+        RESPOND TYPE=command MSG="AFC: No skew_correction section defined - skipping"
+      {% endif %}
     {% endif %}
   {% endif %}
 
